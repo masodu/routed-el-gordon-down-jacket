@@ -101,6 +101,7 @@ class ProductDetails extends React.Component {
     dispatchVariant(color, size) {
         let variant = Utils.getVariantByAxis(this.props.product, color, size);
         this.props.history.push('/' + variant.sku, showPDPAction(this.props.product, variant));
+        this.props.dispatch(showPDPAction(this.props.product, variant));
     }
 
     getProductDetailsPrice() {
@@ -132,6 +133,7 @@ ProductDetails.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
+
     if (ownProps.location.state) {
         state = ownProps.location.state;
     }
