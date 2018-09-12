@@ -1,0 +1,14 @@
+.axis {
+    height: 30px;
+    width: 30px;
+    margin: 2px;
+    color: white;
+}
+
+.axisSize{
+    background-color: black;
+}
+
+.axisSizeSelected{
+    background-color: rgb(172, 0, 0);
+}
