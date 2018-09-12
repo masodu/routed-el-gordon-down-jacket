@@ -22,19 +22,19 @@ import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
-import productDetailsReducer from './reducers/productDetails';
+import rootReducer from './reducers/index';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createBrowserHistory } from 'history';
-import { Router } from 'react-router';
+import { ConnectedRouter as Router, connectRouter, routerMiddleware } from 'connected-react-router';
 import { Route } from 'react-router'
 import ProductDetails from './components/ProductDetails/ProductDetails';
 
 const history = createBrowserHistory();
 // Initialize redux store
-const store = createStore(productDetailsReducer,
+const store = createStore(connectRouter(history)(rootReducer),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    compose(applyMiddleware(thunk)));
+    compose(applyMiddleware(thunk, routerMiddleware(history))));
 
 // Expose function to render ProductDetails component
 ReactDOM.render(   
